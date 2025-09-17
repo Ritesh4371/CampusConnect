@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+
+# Uploads and downloads
+uploads/*
+downloads/*
+!uploads/.gitkeep
+!downloads/.gitkeep
+
+# Database
+*.db
+*.sqlite
+
+# Temporary files
+*.tmp
+*.temp
+conversations.json
+
+# Coverage reports
+htmlcov/
+.coverage
+.pytest_cache/
+
+# React
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
