@@ -11,7 +11,9 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: MONGODB_URI
-        value: <your-mongodb-connection-string>
+        fromDatabase:
+          name: chatbot-db
+          property: connectionString
     healthCheckPath: /
 
   - type: web
@@ -19,7 +21,7 @@ services:
     env: static
     rootDir: frontend
     buildCommand: npm install && npm run build
-    staticPublishPath: dist   # if Vite; use build if CRA
+    staticPublishPath: dist   # if Vite, use "build" if CRA
     pullRequestPreviewsEnabled: false
     buildFilter:
       paths:
@@ -31,3 +33,8 @@ services:
       - path: /*
         name: X-Content-Type-Options
         value: nosniff
+
+databases:
+  - name: chatbot-db
+    databaseName: chatbot
+    plan: free
