@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import io from 'socket.io-client';
 import './ChatInterface.css';
+import { sendMessage, uploadFile } from './services/api';
 
 const ChatInterface = () => {
     const [messages, setMessages] = useState([]);
@@ -21,9 +22,7 @@ const ChatInterface = () => {
     }, [messages]);
 
     useEffect(() => {
-        const API_URL = process.env.NODE_ENV === 'production' 
-            ? window.location.origin 
-            : 'http://localhost:5000';
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
         const newSocket = io(API_URL);
         setSocket(newSocket);
