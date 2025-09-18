@@ -83,9 +83,8 @@ const ChatInterface = () => {
             setMessages(prev => [...prev, messageData]);
 
             try {
-                const API_URL = process.env.NODE_ENV === 'production' 
-                    ? window.location.origin 
-                    : 'http://localhost:5000';
+
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
                 const response = await fetch(`${API_URL}/chat`, {
                     method: 'POST',
@@ -98,6 +97,7 @@ const ChatInterface = () => {
                         language: 'auto'
                     })
                 });
+
 
                 const data = await response.json();
 
@@ -147,10 +147,13 @@ const ChatInterface = () => {
                     ? window.location.origin 
                     : 'http://localhost:5000';
 
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
                 const response = await fetch(`${API_URL}/upload`, {
                     method: 'POST',
                     body: formData
                 });
+
 
                 const result = await response.json();
                 if (response.ok) {
@@ -192,9 +195,7 @@ const ChatInterface = () => {
 
     const downloadFile = async (fileId, fileName) => {
         try {
-            const API_URL = process.env.NODE_ENV === 'production' 
-                ? window.location.origin 
-                : 'http://localhost:5000';
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
             const response = await fetch(`${API_URL}/download/${fileId}`);
 
